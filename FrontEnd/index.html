@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Preschool Registration</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="bg">
+      <div class="container">
+        <header class="topbar">
+          <div class="brand">
+            <div class="logo" aria-hidden="true">🏫</div>
+            <div>
+              <div class="title">Preschool Registration</div>
+              <div class="subtitle">Manage Parents, Classes, and Child Enrollments</div>
+            </div>
+          </div>
+
+          <nav class="tabs" aria-label="Main">
+            <button class="tab is-active" data-tab="parents" type="button">Parents</button>
+            <button class="tab" data-tab="classes" type="button">Classes</button>
+            <button class="tab" data-tab="children" type="button">Children</button>
+          </nav>
+        </header>
+
+        <main>
+          <!-- Parents -->
+          <section class="panel is-active" data-panel="parents">
+            <div class="grid">
+              <div class="card">
+                <h2 class="card-title">Parent Profile</h2>
+                <form id="parent-form" class="form">
+                  <input type="hidden" name="id" />
+
+                  <div class="row">
+                    <label>
+                      Name
+                      <input name="name" type="text" placeholder="e.g. Nimal Perera" required />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Email
+                      <input name="email" type="email" placeholder="e.g. nimal@gmail.com" required />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Phone
+                      <input name="phone" type="tel" placeholder="e.g. 0771234567" required />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Address
+                      <input name="address" type="text" placeholder="Optional address" />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Relationship
+                      <select name="relationship" required>
+                        <option value="">Select...</option>
+                        <option value="Father">Father</option>
+                        <option value="Mother">Mother</option>
+                        <option value="Guardian">Guardian</option>
+                      </select>
+                    </label>
+                  </div>
+
+                  <div class="actions">
+                    <button class="btn primary" type="submit">Save Parent</button>
+                    <button class="btn" id="parent-reset" type="button">Clear</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="card">
+                <div class="card-head">
+                  <h2 class="card-title">All Parents</h2>
+                  <button class="btn small" id="refresh-parents" type="button">Refresh</button>
+                </div>
+                <div id="parents-status" class="status" role="status" aria-live="polite"></div>
+                <div class="table-wrap">
+                  <table class="table" aria-label="Parents list">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Relationship</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="parents-tbody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Classes -->
+          <section class="panel" data-panel="classes">
+            <div class="grid">
+              <div class="card">
+                <h2 class="card-title">Class Management</h2>
+                <form id="class-form" class="form">
+                  <input type="hidden" name="id" />
+
+                  <div class="row">
+                    <label>
+                      Class Name
+                      <input name="className" type="text" placeholder="e.g. Sunflower Class" required />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Age Group
+                      <input name="ageGroup" type="text" placeholder="e.g. 3-4 years" required />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Capacity
+                      <input name="capacity" type="number" min="1" required />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Teacher
+                      <input name="teacher" type="text" placeholder="Optional" />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Schedule
+                      <input name="schedule" type="text" placeholder="e.g. Mon-Fri, 8AM - 12PM" />
+                    </label>
+                  </div>
+
+                  <div class="actions">
+                    <button class="btn primary" type="submit">Save Class</button>
+                    <button class="btn" id="class-reset" type="button">Clear</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="card">
+                <div class="card-head">
+                  <h2 class="card-title">All Classes</h2>
+                  <button class="btn small" id="refresh-classes" type="button">Refresh</button>
+                </div>
+                <div id="classes-status" class="status" role="status" aria-live="polite"></div>
+                <div class="table-wrap">
+                  <table class="table" aria-label="Classes list">
+                    <thead>
+                      <tr>
+                        <th>Class</th>
+                        <th>Age Group</th>
+                        <th>Capacity</th>
+                        <th>Teacher</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="classes-tbody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Children -->
+          <section class="panel" data-panel="children">
+            <div class="grid">
+              <div class="card">
+                <h2 class="card-title">Child Enrollment</h2>
+                <form id="child-form" class="form">
+                  <input type="hidden" name="id" />
+
+                  <div class="row">
+                    <label>
+                      First Name
+                      <input name="firstName" type="text" placeholder="e.g. Amal" required />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Last Name
+                      <input name="lastName" type="text" placeholder="e.g. Perera" required />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Date of Birth
+                      <input name="dateOfBirth" type="date" required />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Gender
+                      <select name="gender" required>
+                        <option value="">Select...</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Medical Notes
+                      <input name="medicalNotes" type="text" placeholder="Optional medical notes" />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Enrollment Date
+                      <input name="enrollmentDate" type="date" />
+                    </label>
+                  </div>
+                  <div class="row">
+                    <label>
+                      Status
+                      <select name="status" required>
+                        <option value="Pending">Pending</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                      </select>
+                    </label>
+                  </div>
+
+                  <div class="row two-cols">
+                    <label>
+                      Parent
+                      <select name="parentId" id="child-parent" required></select>
+                    </label>
+                    <label>
+                      Class
+                      <select name="classId" id="child-class" required></select>
+                    </label>
+                  </div>
+
+                  <div class="actions">
+                    <button class="btn primary" type="submit">Save Child</button>
+                    <button class="btn" id="child-reset" type="button">Clear</button>
+                  </div>
+                </form>
+              </div>
+
+              <div class="card">
+                <div class="card-head">
+                  <h2 class="card-title">All Enrollments</h2>
+                  <button class="btn small" id="refresh-children" type="button">Refresh</button>
+                </div>
+                <div id="children-status" class="status" role="status" aria-live="polite"></div>
+                <div class="table-wrap">
+                  <table class="table" aria-label="Children list">
+                    <thead>
+                      <tr>
+                        <th>Child</th>
+                        <th>DOB</th>
+                        <th>Status</th>
+                        <th>Parent</th>
+                        <th>Class</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody id="children-tbody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer class="footer">
+          <div class="muted">
+            Data sync is done via the existing REST API: <code>/api/parents</code>, <code>/api/classes</code>, <code>/api/children</code>.
+          </div>
+        </footer>
+
+        <div id="toast" class="toast" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
+
