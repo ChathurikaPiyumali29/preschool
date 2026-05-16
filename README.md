@@ -170,7 +170,7 @@ MONGO_URL="mongodb://localhost:27017/preschoolDB"
 npm start
 ```
 
-The server will start at: `http://localhost:8000`
+The server will start at: `http://localhost:3000`
 
 ---
 
@@ -179,7 +179,7 @@ The server will start at: `http://localhost:8000`
 1. Make sure MongoDB is running locally (`mongod`)
 2. Run `npm start` in the project root
 3. Open Postman and import the collection (optional)
-4. Test endpoints using the base URL: `http://localhost:8000`
+4. Test endpoints using the base URL: `http://localhost:3000`
 
 ## Web UI
 After starting the server, open `http://localhost:3000/` to use the modern CRUD UI
